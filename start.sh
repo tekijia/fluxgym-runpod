@@ -19,5 +19,13 @@ jupyter lab \
   --ServerApp.token='' \
   --ServerApp.password='' &
 
-echo "Debug mode"
-tail -f /dev/null
+if [ -d "/workspace/fluxgym" ]; then
+  echo "Starting FluxGym..."
+  cd /workspace/fluxgym
+  source venv/bin/activate
+  python app.py
+else
+  echo "FluxGym not found at /workspace/fluxgym"
+  echo "Debug mode"
+  tail -f /dev/null
+fi
